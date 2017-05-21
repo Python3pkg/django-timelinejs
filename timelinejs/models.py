@@ -2,8 +2,7 @@
 from django.db import models
 import ast
 
-class ListField(models.TextField):
-    __metaclass__ = models.SubfieldBase
+class ListField(models.TextField, metaclass=models.SubfieldBase):
     description = "Stores a python list"
 
     def to_python(self, value):
@@ -19,7 +18,7 @@ class ListField(models.TextField):
         if value is None:
             return value
 
-        return unicode(value)
+        return str(value)
 
     def value_to_string(self, obj):
         value = self._get_val_from_obj(obj)
@@ -101,31 +100,31 @@ class TimelineOptions(models.Model):
             ('Pacifico-Arimo', 'Pacifico-Arimo')
         )
     LANG_CHOICES = (
-            ('en', u'English'),
-            ('fr', u'Français'),
-            ('es', u'Español'),
-            ('de', u'Deutsch'),
-            ('it', u'Italiano'),
-            ('pt-br', u'Português Brazil'),
-            ('pt', u'Português'),
-            ('nl', u'Dutch'),
-            ('cz', u'Czech'),
-            ('no', u'Norwegian'),
-            ('dk', u'Danish'),
-            ('id', u'Indonesian'),
-            ('pl', u'Polish'),
-            ('sl', u'Slovenian'),
-            ('ru', u'Russian'),
-            ('sk', u'Slovak'),
-            ('is', u'Icelandic'),
-            ('fo', u'Faroese'),
-            ('kr', u'월요일'),
-            ('ja', u'日本語'),
-            ('zh-ch', u'中文'),
-            ('zh-tw', u'Taiwanese Mandarin'),
-            ('ta', u'தமிழ் - Tamil'),
-            ('ar', u'Arabic'),
-            ('mn', u'Mongolian')
+            ('en', 'English'),
+            ('fr', 'Français'),
+            ('es', 'Español'),
+            ('de', 'Deutsch'),
+            ('it', 'Italiano'),
+            ('pt-br', 'Português Brazil'),
+            ('pt', 'Português'),
+            ('nl', 'Dutch'),
+            ('cz', 'Czech'),
+            ('no', 'Norwegian'),
+            ('dk', 'Danish'),
+            ('id', 'Indonesian'),
+            ('pl', 'Polish'),
+            ('sl', 'Slovenian'),
+            ('ru', 'Russian'),
+            ('sk', 'Slovak'),
+            ('is', 'Icelandic'),
+            ('fo', 'Faroese'),
+            ('kr', '월요일'),
+            ('ja', '日本語'),
+            ('zh-ch', '中文'),
+            ('zh-tw', 'Taiwanese Mandarin'),
+            ('ta', 'தமிழ் - Tamil'),
+            ('ar', 'Arabic'),
+            ('mn', 'Mongolian')
         )
     MAP_CHOICES = (
             ('Stamen Maps', 'Stamen Maps'),

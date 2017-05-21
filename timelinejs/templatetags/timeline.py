@@ -7,15 +7,15 @@ register = template.Library()
 def timeline(context, src=None, **config):
     if src is None:
         src = context['timeline'].pk
-    if isinstance(src, (int, long)):
+    if isinstance(src, int):
         config['src'] = '%s?format=json' % reverse('timelineview', kwargs={'pk':src})
     else:
         try:
             # `src` might be a string that can be coerced into a long
-            config['src'] = '%s?format=json' % reverse('timelineview', kwargs={'pk': long(src)})
+            config['src'] = '%s?format=json' % reverse('timelineview', kwargs={'pk': int(src)})
         except ValueError:
             config['src'] = src
-    if context.has_key('options'):
+    if 'options' in context:
         options = context['options']
         options.__dict__.update(config)
     else:
